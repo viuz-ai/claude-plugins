@@ -1,0 +1,18 @@
+{
+  "name": "viuz",
+  "version": "1.0.0",
+  "description": "Viuz for Claude: connects Claude to your Viuz workspace and teaches it to plan, make, schedule and publish social posts for your brand, asking before it spends or publishes.",
+  "author": {
+    "name": "Viuz",
+    "url": "https://viuz.ai"
+  },
+  "homepage": "https://viuz.ai",
+  "license": "MIT",
+  "keywords": [
+    "viuz",
+    "social media",
+    "instagram",
+    "carousel",
+    "content"
+  ]
+}
