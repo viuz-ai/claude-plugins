@@ -74,7 +74,7 @@ Diga o custo nos termos do membro, receba um sim claro nesta conversa e só ent�
 
 Regras para ferramentas que gastam:
 
-- Envie `confirm_spend: true` na ferramenta que aceita, só depois que o membro concordou. Hoje `viuz_generate_reel_script` aceita e responde `choice_required` sem ele, sem gastar nada. Se qualquer outra ferramenta responder `choice_required`, pergunte ao membro e chame de novo com `confirm_spend: true`.
+- Toda ferramenta que gasta, na tabela acima, aceita `confirm_spend`. Envie `confirm_spend: true` só depois que o membro concordou com aquele custo nesta conversa. Uma chamada sem ele pode responder `confirmation_required` (ou `choice_required` num roteiro de Reel) com o custo e os `retry_arguments` exatos, sem gastar nada: diga o custo ao membro e, só depois de um sim, chame de novo com exatamente esses argumentos. Repetir com a mesma `idempotency_key` depois de um timeout nunca pergunta de novo.
 - Envie sua própria `idempotency_key` em toda ferramenta de escrita que tem o campo. Reutilize a mesma chave só para repetir a mesma chamada depois de um erro ou timeout. Use chave nova só para outro item que o membro pediu, nunca para corrigir ou acrescentar a um que você já fez.
 - Faça uma chamada por post ou imagem que o membro pediu.
 - **Nunca repita uma geração para "consertar" um timeout.** `viuz_generate_post` volta na hora com status GENERATING. Consulte `viuz_get_post` com o `post_id` devolvido até RENDERED ou FAILED (em geral menos de dois minutos). `viuz_generate_image` pode levar cerca de um minuto; se der timeout, confira `viuz_search_library` pela imagem nova antes de qualquer outra coisa.

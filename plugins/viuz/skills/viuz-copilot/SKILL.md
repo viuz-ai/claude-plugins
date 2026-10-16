@@ -79,7 +79,7 @@ Say what it costs in the member's terms, get a clear yes in this conversation, t
 
 Rules for spend tools:
 
-- Send `confirm_spend: true` on a tool that accepts it, only after the member agreed. Today `viuz_generate_reel_script` takes it and answers `choice_required` without it, spending nothing. If any other tool answers `choice_required`, ask the member, then call again with `confirm_spend: true`.
+- Every spend tool in the table above accepts `confirm_spend`. Send `confirm_spend: true` only after the member agreed to that cost in this conversation. A spend call without it may answer `confirmation_required` (or `choice_required` for a Reel script) with the cost and the exact `retry_arguments`, spending nothing: tell the member the cost, and only after a yes call again with exactly those arguments. A retry with the same `idempotency_key` after a timeout is never asked again.
 - Send your own `idempotency_key` on every write tool that has the field. Reuse the same key only to retry the same call after an error or a timeout. Use a new key only for a different item the member asked for, never to correct or add to one you already made.
 - Make one call per post or image the member asked for.
 - **Never retry a generation to fix a timeout.** `viuz_generate_post` returns at once with status GENERATING. Poll `viuz_get_post` with the returned `post_id` until RENDERED or FAILED (usually under two minutes). `viuz_generate_image` can take about a minute; if it times out, check `viuz_search_library` for the new image before anything else.
