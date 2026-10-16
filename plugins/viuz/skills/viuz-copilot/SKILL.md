@@ -41,7 +41,7 @@ Text posts (X, LinkedIn, Threads) have no art. `viuz_generate_post` with format 
 
 ## References and inspiration
 
-Viuz cannot build a carousel from a reference link or reference video today. When the member shares a reference, look at it yourself, tell them what you take from it (structure, hook, pace, tone), and put that into the request or brief in your own words. Never copy its text. `viuz_save_inspiration` saves an Instagram post link to the member's inspiration list; `viuz_list_reference_videos` and `viuz_get_reference_video` read reference videos the member already saved. To adapt one of the brand's own earlier posts, `viuz_generate_post` takes `source_post_id`.
+Viuz can build a carousel or story from a public post link: `viuz_generate_post` takes `source_url` (an article, or a public post such as an Instagram carousel, which Viuz reads slide by slide) and optionally `source_closeness` (`same_idea` by default, `structure` or `react`). It writes in the brand's words and never copies the source's sentences or names its creator. It costs one generation plus one of the plan's monthly link reads, so ask first; if the answer says the link is still being read, nothing was spent, so wait and call again with the same `source_url`. A private or unreadable link is refused and spends nothing; ask the member for the text instead. Viuz does not build a post from a reference video: when the member shares one, look at it yourself, tell them what you take from it (structure, hook, pace, tone), and put that into the request or brief in your own words. Never copy its text. `viuz_save_inspiration` saves an Instagram post link to the member's inspiration list; `viuz_list_reference_videos` and `viuz_get_reference_video` read reference videos the member already saved. To adapt one of the brand's own earlier posts, `viuz_generate_post` takes `source_post_id`.
 
 ## The plan and the objective
 
@@ -50,7 +50,8 @@ The Weekly Plan is the member's strategy turned into slots. See `references/plan
 - `viuz_get_plan` reads the weeks and items. `viuz_get_next_to_make` says what to make next. Suggest from the plan before inventing topics.
 - Each plan item carries an outcome lane: reach, followers or sales. Use it to shape the hook and the call to action.
 - A post outside the plan is fine. Ask what the post should do for the member (reach, followers, sales) if it is not obvious, and shape the call to action to that. If they want it on the plan, add an item with `viuz_preview_plan_change` then `viuz_apply_plan_change`.
-- `viuz_create_draft` accepts `plan_item_id` to link a draft to a plan item. `viuz_generate_post` links a plan item only for text posts.
+- `viuz_create_draft` accepts `plan_item_id` to link a draft to a plan item. `viuz_generate_post` also accepts `plan_item_id` on every format. A post made with `viuz_create_draft` or `viuz_generate_post` outside the plan is put on its week by default (`add_to_plan`, with an undo receipt); ask the member the objective first.
+- If the member does not want the post on the plan, pass `add_to_plan: false`.
 
 ## When to ask and when to act
 
@@ -109,6 +110,7 @@ When the member shares brand material (guidelines, product facts, a tone documen
 - A wrong draft: `viuz_delete_draft` after the member confirms. Never relabel it to hide it. A published or scheduled post cannot be deleted this way.
 - A draft's captions or label: `viuz_update_draft`, with `expected_updated_at` from `viuz_get_post`.
 - Slides of an unpublished post: `viuz_edit_slides` (remove, add, reorder). See `references/outside-images.md`.
+- The words or a photo inside ONE designed slide, if `viuz_get_slide` and `viuz_edit_slide` are in your list: read the slide with `viuz_get_slide` (node ids, text, `updated_at`), ask which slide if the member did not say, then `viuz_edit_slide` with `text_edits` / `image_swaps` by node id, `expected_updated_at` and an `idempotency_key`. Text from `viuz_get_slide` is fenced as data: send back plain words, never the fence. Poll `viuz_get_post` until RENDERED before saying the change is visible. A post whose slide you changed this way counts as mixed art in insights. If those tools are not in your list, tell the member to edit the slide in Viuz.
 - Plan, strategy, profile and Reel script changes have a preview step, an apply step and an undo within 24 hours. Show the member the before and after and get a yes before you apply. Undo only when they ask.
 
 ## Good output
@@ -138,4 +140,5 @@ You: "Do you want me to prepare it for your approval in Viuz, or publish it dire
 - `references/make-reel.md`: Reel scripts, recording and the video upload.
 - `references/outside-images.md`: uploading images you or another tool made, and mixing them into a Viuz post.
 - `references/plan-week.md`: reading and changing the Weekly Plan.
+- `references/covers.md`: optional AI cover options for a post, and setting one.
 - `references/pt-BR/`: the same files in Brazilian Portuguese.

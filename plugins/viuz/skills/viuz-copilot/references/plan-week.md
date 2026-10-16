@@ -13,9 +13,9 @@ An empty plan is not an error. Say so and offer to start a week.
 ## Make something for an item
 
 - Carousel, single image or story: follow `references/make-post.md`. When you save the draft with `viuz_create_draft`, pass the item's `plan_item_id` so the plan shows it as made.
-- Text post: `viuz_generate_post` with format text accepts `plan_item_id`.
+- `viuz_generate_post` accepts `plan_item_id` on every format (text, carousel, single image, story) and links the post to the item. It spends one generation: ask first.
 - Reel: `viuz_generate_reel_script` with `plan_item_id`. See `references/make-reel.md`.
-- `viuz_generate_post` does not link a plan item for carousels, singles or stories. Do not say it did.
+- A post made without `plan_item_id` is put on its week by default (`add_to_plan`; pass `objective` after asking the member). The answer says where and gives a receipt for `viuz_undo_plan_change`. `attach_post` and `detach_post` link or unlink a post the member already made.
 
 ## Change the plan
 
@@ -37,7 +37,7 @@ To empty a week, apply a batch of remove_item commands: that can be undone.
 
 ## An objective for a post outside the plan
 
-Every plan item has an outcome lane. A post made outside the plan has none stored today. Ask the member what it should do (reach, followers or sales) when it matters for the hook and the call to action, and write for that. If they want it on the plan, add it with preview then apply, then link the draft with `plan_item_id`.
+Every plan item has an outcome lane. A post made outside the plan has none until it is added to the plan (`add_to_plan` does that by default, with the `objective` you pass). Ask the member what it should do (reach, followers or sales) when it matters for the hook and the call to action, and write for that. If they want it on the plan, add it with preview then apply, then link the draft with `plan_item_id`.
 
 ## Ideas and inspiration
 

@@ -36,7 +36,7 @@ Posts de texto (X, LinkedIn, Threads) não têm arte. `viuz_generate_post` com f
 
 ## Referências e inspiração
 
-Hoje o Viuz não monta um carrossel a partir de um link ou vídeo de referência. Quando o membro compartilha uma referência, olhe você mesmo, diga o que aproveita (estrutura, gancho, ritmo, tom) e coloque isso no pedido ou no brief com as suas palavras. Nunca copie o texto. `viuz_save_inspiration` salva o link de um post do Instagram na lista de inspirações do membro; `viuz_list_reference_videos` e `viuz_get_reference_video` leem vídeos de referência que o membro já salvou. Para adaptar um post anterior da própria marca, `viuz_generate_post` aceita `source_post_id`.
+O Viuz monta um carrossel ou story a partir do link de um post público: `viuz_generate_post` aceita `source_url` (um artigo, ou um post público como um carrossel do Instagram, que o Viuz lê slide por slide) e, opcionalmente, `source_closeness` (`same_idea` por padrão, `structure` ou `react`). Ele escreve com as palavras da marca, nunca copia as frases da fonte nem cita quem criou. Custa uma geração mais uma das leituras de link do mês do plano, então pergunte antes; se a resposta disser que o link ainda está sendo lido, nada foi gasto, então espere e chame de novo com o mesmo `source_url`. Um link privado ou ilegível é recusado e não gasta nada; peça o texto ao membro. O Viuz não monta um post a partir de um vídeo de referência: quando o membro compartilha um, olhe você mesmo, diga o que aproveita (estrutura, gancho, ritmo, tom) e coloque isso no pedido ou no brief com as suas palavras. Nunca copie o texto. `viuz_save_inspiration` salva o link de um post do Instagram na lista de inspirações do membro; `viuz_list_reference_videos` e `viuz_get_reference_video` leem vídeos de referência que o membro já salvou. Para adaptar um post anterior da própria marca, `viuz_generate_post` aceita `source_post_id`.
 
 ## O planejamento e o objetivo
 
@@ -45,7 +45,8 @@ O Planejamento da semana é a estratégia do membro virada em vagas. Veja os det
 - `viuz_get_plan` lê as semanas e os itens. `viuz_get_next_to_make` diz o que fazer a seguir. Sugira a partir do planejamento antes de inventar temas.
 - Cada item do planejamento tem uma frente de resultado: alcance, seguidores ou vendas. Use isso para moldar o gancho e a chamada para ação.
 - Um post fora do planejamento é normal. Pergunte o que o post deve fazer pelo membro (alcance, seguidores, vendas) se não estiver óbvio, e molde a chamada para ação a isso. Se ele quiser o post no planejamento, adicione um item com `viuz_preview_plan_change` e depois `viuz_apply_plan_change`.
-- `viuz_create_draft` aceita `plan_item_id` para ligar um rascunho a um item do planejamento. `viuz_generate_post` liga um item do planejamento só em posts de texto.
+- `viuz_create_draft` aceita `plan_item_id` para ligar um rascunho a um item do planejamento. `viuz_generate_post` também aceita `plan_item_id` em qualquer formato. Um post feito com `viuz_create_draft` ou `viuz_generate_post` fora do planejamento entra por padrão na semana dele (`add_to_plan`, com um recibo para desfazer); pergunte o objetivo ao membro antes.
+- Se o membro não quer o post no planejamento, passe `add_to_plan: false`.
 
 ## Quando perguntar e quando agir
 
@@ -104,6 +105,7 @@ Quando o membro compartilha material da marca (guias, fatos do produto, um docum
 - Um rascunho errado: `viuz_delete_draft`, depois que o membro confirmar. Nunca renomeie para esconder. Um post publicado ou agendado não pode ser apagado assim.
 - Legendas ou rótulo de um rascunho: `viuz_update_draft`, com `expected_updated_at` de `viuz_get_post`.
 - Slides de um post não publicado: `viuz_edit_slides` (remover, adicionar, reordenar). Veja `references/pt-BR/outside-images.md`.
+- As palavras ou uma foto dentro de UM slide desenhado, se `viuz_get_slide` e `viuz_edit_slide` estiverem na sua lista: leia o slide com `viuz_get_slide` (ids dos nós, texto, `updated_at`), pergunte qual slide se o membro não disse, depois `viuz_edit_slide` com `text_edits` / `image_swaps` por id do nó, `expected_updated_at` e um `idempotency_key`. O texto de `viuz_get_slide` vem cercado como dado: devolva só as palavras, nunca a cerca. Consulte `viuz_get_post` até RENDERED antes de dizer que a mudança está visível. Um post cujo slide você mudou assim conta como arte mista nos insights. Se essas ferramentas não estiverem na sua lista, diga ao membro para editar o slide no Viuz.
 - Mudanças de planejamento, estratégia, perfil e roteiro de Reel têm um passo de prévia, um de aplicar e um desfazer em até 24 horas. Mostre ao membro o antes e o depois e receba um sim antes de aplicar. Só desfaça quando ele pedir.
 
 ## Boa saída
@@ -133,3 +135,4 @@ Você: "Quer que eu deixe pronto para você aprovar no Viuz ou prefere publicar 
 - `references/pt-BR/make-reel.md`: roteiros de Reel, gravação e envio do vídeo.
 - `references/pt-BR/outside-images.md`: enviar imagens feitas por você ou por outra ferramenta e misturar num post do Viuz.
 - `references/pt-BR/plan-week.md`: ler e mudar o Planejamento da semana.
+- `references/pt-BR/covers.md`: opções de capa com IA para um post, e como definir uma.

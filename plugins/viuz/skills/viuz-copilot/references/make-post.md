@@ -22,6 +22,8 @@ Spends one generation from the plan per post. Say so and get a yes.
 Notes:
 
 - Photo pins fill the first image slots in page order, and a single image cannot take pins. Say that when the member expects a photo on a particular slide; to put a photo on a particular slide, upload or choose it and then use `viuz_edit_slides` (see `references/outside-images.md`).
+- To build from a link, if `viuz_generate_post` lists `source_url` for carousels and stories (text always): pass it, with `source_closeness` (`same_idea`, `structure` or `react`). It spends one generation and one of the monthly link reads, so ask first. If the answer says the link is still being read, nothing was spent: wait and call again with the same `source_url`. Never copy the source's sentences.
+- Send `confirm_spend: true` on `viuz_generate_post` only after the member agreed to the cost; without it the call may answer `confirmation_required` with nothing spent.
 - Pass `campaign_id` only when the member named a campaign. If it answers that campaign support is unavailable, nothing was generated; tell them and ask.
 - A layered look (the subject photo in front of or behind the headline) is available only if the tool lists a `style` field. Pass it only when the member asked for that look.
 - `viuz_generate_image` makes one AI image into the library with no post around it. It spends one AI image, has no people and no text in it, and gives you an `asset_id` to use in a draft or a generation.
@@ -32,7 +34,7 @@ No generation is spent.
 
 1. `viuz_get_brief` with `art: "yours"`, so Viuz writes only the strategy and a production block (canvas size, page count, words per page, caption targets).
 2. `viuz_get_design_kit` for palette, fonts, logo, handle and canvas sizes.
-3. Make the images at those sizes. Instagram carousels run 4:5 to 1.91:1 and every page should share one ratio.
+3. Make the images at those sizes. Instagram carousels run 3:4 (1080x1440) to 1.91:1, 4:5 (1080x1350) is the usual, and every page should share one ratio.
 4. Upload and build the draft. See `references/outside-images.md`.
 
 ## Branch C: Another tool's images

@@ -13,9 +13,9 @@ Um planejamento vazio não é erro. Diga isso e ofereça começar uma semana.
 ## Fazer algo para um item
 
 - Carrossel, imagem única ou story: siga `references/pt-BR/make-post.md`. Ao salvar o rascunho com `viuz_create_draft`, passe o `plan_item_id` do item para o planejamento mostrar como feito.
-- Post de texto: `viuz_generate_post` com formato text aceita `plan_item_id`.
+- `viuz_generate_post` aceita `plan_item_id` em qualquer formato (texto, carrossel, imagem única, story) e liga o post ao item. Gasta uma geração: pergunte antes.
 - Reel: `viuz_generate_reel_script` com `plan_item_id`. Veja `references/pt-BR/make-reel.md`.
-- `viuz_generate_post` não liga um item do planejamento em carrosséis, imagens únicas ou stories. Não diga que ligou.
+- Um post feito sem `plan_item_id` entra por padrão na semana dele (`add_to_plan`; passe `objective` depois de perguntar ao membro). A resposta diz onde e traz um recibo para `viuz_undo_plan_change`. `attach_post` e `detach_post` ligam ou desligam um post que o membro já fez.
 
 ## Mudar o planejamento
 
@@ -37,7 +37,7 @@ Para esvaziar uma semana, aplique um lote de comandos remove_item: isso pode ser
 
 ## Um objetivo para o post fora do planejamento
 
-Todo item do planejamento tem uma frente de resultado. Um post feito fora do planejamento não tem nenhuma guardada hoje. Pergunte ao membro o que ele deve fazer (alcance, seguidores ou vendas) quando isso importa para o gancho e a chamada para ação, e escreva para isso. Se ele quiser o post no planejamento, adicione com prévia e aplicação e depois ligue o rascunho com `plan_item_id`.
+Todo item do planejamento tem uma frente de resultado. Um post feito fora do planejamento não tem nenhuma até entrar no planejamento (`add_to_plan` faz isso por padrão, com o `objective` que você passar). Pergunte ao membro o que ele deve fazer (alcance, seguidores ou vendas) quando isso importa para o gancho e a chamada para ação, e escreva para isso. Se ele quiser o post no planejamento, adicione com prévia e aplicação e depois ligue o rascunho com `plan_item_id`.
 
 ## Ideias e inspiração
 

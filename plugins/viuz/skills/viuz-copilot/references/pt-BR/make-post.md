@@ -22,6 +22,8 @@ Gasta uma geração do plano por post. Diga isso e receba um sim.
 Notas:
 
 - As fotos fixadas ocupam os primeiros espaços de imagem na ordem das páginas, e uma imagem única não aceita fixar fotos. Diga isso quando o membro espera uma foto em um slide específico; para pôr uma foto em um slide específico, envie ou escolha a foto e depois use `viuz_edit_slides` (veja `references/pt-BR/outside-images.md`).
+- Para criar a partir de um link, se `viuz_generate_post` lista `source_url` para carrosséis e stories (texto sempre): passe-o, com `source_closeness` (`same_idea`, `structure` ou `react`). Gasta uma geração e uma das leituras de link do mês, então pergunte antes. Se a resposta disser que o link ainda está sendo lido, nada foi gasto: espere e chame de novo com o mesmo `source_url`. Nunca copie as frases da fonte.
+- Envie `confirm_spend: true` em `viuz_generate_post` só depois que o membro concordou com o custo; sem isso a chamada pode responder `confirmation_required` sem gastar nada.
 - Passe `campaign_id` só quando o membro citou uma campanha. Se responder que campanhas não estão disponíveis, nada foi gerado; conte a ele e pergunte.
 - O visual em camadas (a foto do assunto na frente ou atrás do título) só existe se a ferramenta listar o campo `style`. Passe só quando o membro pediu esse visual.
 - `viuz_generate_image` cria uma imagem de IA na biblioteca, sem post em volta. Gasta uma imagem de IA, não tem pessoas nem texto e devolve um `asset_id` para usar em um rascunho ou numa geração.
@@ -32,7 +34,7 @@ Não gasta geração.
 
 1. `viuz_get_brief` com `art: "yours"`, para o Viuz escrever só a estratégia e um bloco de produção (tamanho da tela, número de páginas, palavras por página, metas de legenda).
 2. `viuz_get_design_kit` para paleta, fontes, logo, @ e tamanhos de tela.
-3. Crie as imagens nesses tamanhos. Carrosséis do Instagram vão de 4:5 a 1,91:1 e todas as páginas devem ter a mesma proporção.
+3. Crie as imagens nesses tamanhos. Carrosséis do Instagram vão de 3:4 (1080x1440) a 1,91:1, 4:5 (1080x1350) é o mais comum, e todas as páginas devem ter a mesma proporção.
 4. Envie e monte o rascunho. Veja `references/pt-BR/outside-images.md`.
 
 ## Caminho C: imagens de outra ferramenta
