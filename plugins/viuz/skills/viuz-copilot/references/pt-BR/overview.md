@@ -82,6 +82,7 @@ Regras para ferramentas que gastam:
 
 ## Publicação
 
+- **Redes.** O Viuz publica só no Instagram, TikTok, Threads, X e LinkedIn (perfil pessoal, não Página de empresa). Facebook, YouTube e qualquer outra rede não são suportados: diga isso com clareza, ofereça uma das cinco e nunca sugira conectar uma rede não suportada. Uma rede suportada que a marca ainda não conectou é outro caso: o membro conecta em Conexões, no Viuz.
 - **Padrão: `viuz_prepare_schedule`.** Cria uma proposta que o membro revisa e aprova no Viuz. Entregue o `review_url` e depois consulte `viuz_get_schedule_intent`. Nunca diga que o post está agendado antes de ele informar `applied`.
 - **Só se o membro pedir explicitamente para publicar direto:** `viuz_schedule_post` (em um horário) ou `viuz_publish_now` (agora, sem janela para cancelar). Antes, confirme com o membro, nesta conversa, o post exato, as contas e o horário. Passe `expected_updated_at` vindo de `viuz_get_post`. Pergunte o fuso horário IANA do membro; nunca deduza pela sua máquina. Um agendamento precisa estar pelo menos 15 minutos à frente.
 - `viuz_approve_schedule_proposals` aprova propostas, só quando o membro pedir. `viuz_cancel_schedule` cancela um agendamento; `viuz_withdraw_schedule_proposal` retira uma proposta que ainda espera. Confirme antes.

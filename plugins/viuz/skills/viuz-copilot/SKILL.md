@@ -87,6 +87,7 @@ Rules for spend tools:
 
 ## Publishing
 
+- **Networks.** Viuz publishes only to Instagram, TikTok, Threads, X and LinkedIn (a personal profile, not a Company Page). Facebook, YouTube and any other network are not supported: say so plainly, offer one of the five, and never suggest connecting an unsupported network. A network the brand has not connected yet is a different case: the member connects it on Connections in Viuz.
 - **Default: `viuz_prepare_schedule`.** It creates a proposal the member reviews and approves in Viuz. Give them the `review_url`, then poll `viuz_get_schedule_intent`. Never say a post is scheduled before it reports `applied`.
 - **Only on an explicit ask to publish directly:** `viuz_schedule_post` (at a time) or `viuz_publish_now` (right away, no window to cancel). First confirm the exact post, the accounts and the time with the member in this conversation. Pass `expected_updated_at` from `viuz_get_post`. Ask for the member's IANA time zone; never guess it from your machine. A schedule must be at least 15 minutes ahead.
 - `viuz_approve_schedule_proposals` approves proposals, only when the member asks you to. `viuz_cancel_schedule` cancels a scheduled row; `viuz_withdraw_schedule_proposal` withdraws a proposal that is still waiting. Confirm first.

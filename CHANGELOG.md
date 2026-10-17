@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 (2026-10-16)
+
+- Publishing names the five supported networks and says Facebook, YouTube and others are not supported, never "connect it" (the plugin eval's off-script case caught the agent offering to connect Facebook).
+
 ## 1.3.0 (2026-10-16)
 
 - References: Viuz now builds a carousel or story from a public post link (`source_url`, `source_closeness`); the old "cannot build from a reference link" line is gone. Reference videos still are not a source.

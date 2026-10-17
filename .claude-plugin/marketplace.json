@@ -10,7 +10,7 @@
       "name": "viuz",
       "source": "./plugins/viuz",
       "description": "Viuz for Claude: connects Claude to your Viuz workspace and teaches it to plan, make, schedule and publish social posts for your brand, asking before it spends or publishes.",
-      "version": "1.3.0"
+      "version": "1.3.1"
     }
   ]
 }
