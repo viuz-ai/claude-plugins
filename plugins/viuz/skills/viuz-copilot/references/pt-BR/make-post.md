@@ -34,7 +34,7 @@ Não gasta geração.
 
 1. `viuz_get_brief` com `art: "yours"`, para o Viuz escrever só a estratégia e um bloco de produção (tamanho da tela, número de páginas, palavras por página, metas de legenda).
 2. `viuz_get_design_kit` para paleta, fontes, logo, @ e tamanhos de tela.
-3. Crie as imagens nesses tamanhos. Carrosséis do Instagram vão de 3:4 (1080x1440) a 1,91:1, 4:5 (1080x1350) é o mais comum, e todas as páginas devem ter a mesma proporção.
+3. Crie as imagens nesses tamanhos. Carrosséis do Instagram vão de 3:4 a 1,91:1 e todas as páginas devem ter a mesma proporção. Um carrossel 3:4 (1080x1440) é publicado sem corte; para imagem única ou slide de vídeo, use 4:5 (1080x1350).
 4. Envie e monte o rascunho. Veja `references/pt-BR/outside-images.md`.
 
 ## Caminho C: imagens de outra ferramenta

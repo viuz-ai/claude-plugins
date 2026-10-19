@@ -8,11 +8,12 @@ Each option is one of the plan's monthly AI images. Say so in the member's terms
 
 ## Pick the mode with the member
 
-Ask one question, with your recommendation:
+Ask one question, with your recommendation. Offer the modes this connection has: `mode` in `viuz_generate_cover`'s schema lists them.
 
 - **scene** (default): a photo-like scene with calm room where Viuz sets the post's headline.
 - **layered**: a person or object cut out in front of one giant word of the headline. Needs `post_id`, and only for feed posts (4:5 or 3:4).
 - **mockup**: the post's own first-slide line printed on a real object in the scene (a poster, a sign). Needs `post_id`.
+- **still_life** (if available: it sits behind a flag that is off in some deployments): one everyday object from the brand's field, photographed on the brand's colour, with one giant word Viuz writes for the post's idea (a new word, not taken from the headline), a short line and a handwritten aside. Needs `post_id`. The 3 options differ in framing (the third shows a hand). Recommend it for a tip, myth or mistake post when the member has no good photo. It is one choice among the four, never the default.
 
 Optional starting points:
 

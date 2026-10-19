@@ -8,11 +8,12 @@ Cada opção usa uma das imagens de IA do mês no plano. Diga isso nos termos do
 
 ## Escolha o modo com o membro
 
-Faça uma pergunta, com a sua recomendação:
+Faça uma pergunta, com a sua recomendação. Ofereça os modos que esta conexão tem: o `mode` no schema do `viuz_generate_cover` lista quais são.
 
 - **scene** (padrão): uma cena parecida com foto, com um espaço calmo onde o Viuz coloca o título do post.
 - **layered**: uma pessoa ou objeto recortado na frente de uma palavra gigante do título. Precisa de `post_id`, e só serve para posts de feed (4:5 ou 3:4).
 - **mockup**: a linha do primeiro slide do próprio post impressa num objeto real da cena (um cartaz, uma placa). Precisa de `post_id`.
+- **still_life** (se disponível: fica atrás de uma flag desligada em algumas instalações): um objeto do dia a dia do nicho da marca, fotografado no fundo da cor da marca, com uma palavra gigante que o Viuz escreve para a ideia do post (uma palavra nova, não tirada do título), uma frase curta e uma linha à mão. Precisa de `post_id`. As 3 opções mudam o enquadramento (a terceira mostra uma mão). Recomende para post de dica, mito ou erro quando o membro não tem uma boa foto. É uma escolha entre as quatro, nunca o padrão.
 
 Pontos de partida opcionais:
 

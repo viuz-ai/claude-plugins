@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.2 (2026-10-19)
+
+- Covers: the still life mode is named (one everyday object of the brand's field on the brand's colour, a giant word Viuz writes, not taken from the headline, a line and a handwritten aside; needs `post_id`; if available), with when to recommend it. It is one of four modes, never the default.
+
 ## 1.3.1 (2026-10-16)
 
 - Publishing names the five supported networks and says Facebook, YouTube and others are not supported, never "connect it" (the plugin eval's off-script case caught the agent offering to connect Facebook).
@@ -12,6 +16,10 @@
 ## 1.2.0 (2026-10-16)
 
 - `viuz_get_slide` and `viuz_edit_slide` are named ("if available": both sit behind a flag that is off in some deployments); `plan_item_id` on every format, `add_to_plan` / `add_to_plan: false`, `source_url` with `source_closeness` on carousels and stories, and `confirm_spend` on `viuz_generate_post` are described the same way. Instagram's feed range is now 3:4 to 1.91:1 (3:4 publishes natively). A post changed through slide edits counts as mixed art in insights.
+
+## 1.1.1 (2026-10-16)
+
+- `make-post`: Instagram carousels run 3:4 to 1.91:1 (a 1080x1440 carousel was measured publishing uncropped on 2026-10-14); a single image or a video slide stays at 4:5.
 
 ## 1.1.0 (2026-10-16)
 

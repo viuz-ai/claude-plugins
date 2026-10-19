@@ -15,7 +15,7 @@ An empty plan is not an error. Say so and offer to start a week.
 - Carousel, single image or story: follow `references/make-post.md`. When you save the draft with `viuz_create_draft`, pass the item's `plan_item_id` so the plan shows it as made.
 - `viuz_generate_post` accepts `plan_item_id` on every format (text, carousel, single image, story) and links the post to the item. It spends one generation: ask first.
 - Reel: `viuz_generate_reel_script` with `plan_item_id`. See `references/make-reel.md`.
-- A post made without `plan_item_id` is put on its week by default (`add_to_plan`; pass `objective` after asking the member). The answer says where and gives a receipt for `viuz_undo_plan_change`. `attach_post` and `detach_post` link or unlink a post the member already made.
+- A post made without `plan_item_id` is put on its week by default (`add_to_plan`; pass `objective` after asking the member). The answer says where and gives a receipt for `viuz_undo_plan_change`. `attach_post` and `detach_post` link or unlink a post the member already made. A post the member published straight from the Instagram app appears in `viuz_list_posts` and `viuz_get_post` with `origin: instagram_native` and its `permalink`: it is read-only (edit, schedule and publish tools refuse it with `native_post_read_only`), but `attach_post` works on it and its numbers can be read.
 
 ## Change the plan
 

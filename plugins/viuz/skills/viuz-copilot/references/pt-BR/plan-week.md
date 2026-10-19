@@ -15,7 +15,7 @@ Um planejamento vazio não é erro. Diga isso e ofereça começar uma semana.
 - Carrossel, imagem única ou story: siga `references/pt-BR/make-post.md`. Ao salvar o rascunho com `viuz_create_draft`, passe o `plan_item_id` do item para o planejamento mostrar como feito.
 - `viuz_generate_post` aceita `plan_item_id` em qualquer formato (texto, carrossel, imagem única, story) e liga o post ao item. Gasta uma geração: pergunte antes.
 - Reel: `viuz_generate_reel_script` com `plan_item_id`. Veja `references/pt-BR/make-reel.md`.
-- Um post feito sem `plan_item_id` entra por padrão na semana dele (`add_to_plan`; passe `objective` depois de perguntar ao membro). A resposta diz onde e traz um recibo para `viuz_undo_plan_change`. `attach_post` e `detach_post` ligam ou desligam um post que o membro já fez.
+- Um post feito sem `plan_item_id` entra por padrão na semana dele (`add_to_plan`; passe `objective` depois de perguntar ao membro). A resposta diz onde e traz um recibo para `viuz_undo_plan_change`. `attach_post` e `detach_post` ligam ou desligam um post que o membro já fez. Um post que o membro publicou direto pelo app do Instagram aparece em `viuz_list_posts` e `viuz_get_post` com `origin: instagram_native` e o `permalink`: ele é somente leitura (as ferramentas de editar, agendar e publicar recusam com `native_post_read_only`), mas `attach_post` funciona nele e dá para ler os números.
 
 ## Mudar o planejamento
 

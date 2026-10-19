@@ -34,7 +34,7 @@ No generation is spent.
 
 1. `viuz_get_brief` with `art: "yours"`, so Viuz writes only the strategy and a production block (canvas size, page count, words per page, caption targets).
 2. `viuz_get_design_kit` for palette, fonts, logo, handle and canvas sizes.
-3. Make the images at those sizes. Instagram carousels run 3:4 (1080x1440) to 1.91:1, 4:5 (1080x1350) is the usual, and every page should share one ratio.
+3. Make the images at those sizes. Instagram carousels run 3:4 to 1.91:1 and every page should share one ratio. A 3:4 carousel (1080x1440) publishes uncropped; for a single image or a video slide use 4:5 (1080x1350).
 4. Upload and build the draft. See `references/outside-images.md`.
 
 ## Branch C: Another tool's images
