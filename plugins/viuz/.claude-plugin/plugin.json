@@ -1,13 +1,17 @@
 {
   "name": "viuz",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Viuz for Claude: connects Claude to your Viuz workspace and teaches it to plan, make, schedule and publish social posts for your brand, asking before it spends or publishes.",
   "author": {
     "name": "Viuz",
     "url": "https://viuz.ai"
   },
   "homepage": "https://viuz.ai",
+  "repository": "https://github.com/viuz-ai/claude-plugins",
+  "documentationUrl": "https://viuz.ai/mcp",
+  "supportUrl": "mailto:support@viuz.ai",
   "privacyPolicyUrl": "https://viuz.ai/privacy",
+  "termsOfServiceUrl": "https://viuz.ai/terms",
   "license": "MIT",
   "keywords": [
     "viuz",

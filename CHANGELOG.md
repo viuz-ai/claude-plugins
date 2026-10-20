@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.4 (2026-10-20)
+
+- Directory links in `plugin.json`: repository, documentation (viuz.ai/mcp), support (support@viuz.ai) and terms. No skill change.
+
 ## 1.3.3 (2026-10-20)
 
 - Packaging for the Claude directory: a listing icon (`.claude-plugin/icon.png`), `privacyPolicyUrl` in `plugin.json`, and a README inside `plugins/viuz/` that says what the plugin sends. The eval cases moved out of the shipped plugin into the Viuz repository (`evals/claude-plugin/`).
