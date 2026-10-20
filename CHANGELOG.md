@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.3 (2026-10-20)
+
+- Packaging for the Claude directory: a listing icon (`.claude-plugin/icon.png`), `privacyPolicyUrl` in `plugin.json`, and a README inside `plugins/viuz/` that says what the plugin sends. The eval cases moved out of the shipped plugin into the Viuz repository (`evals/claude-plugin/`).
+- Saving: news with a deadline (a launch, a price, an event, a promotion). If `viuz_save_context` lists `valid_until` and `renew`, offer once per conversation to save it AFTER the task, with the date in the same question, only on an explicit yes, never for a fact that does not expire or for revenue or a named client; `renew` extends a deadline; say when a note is `only_when_picked`. Behind `MCP_CONTEXT_VALID_UNTIL_ENABLED`; the skill says "if listed" like the other flagged tools.
+
 ## 1.3.2 (2026-10-19)
 
 - Covers: the still life mode is named (one everyday object of the brand's field on the brand's colour, a giant word Viuz writes, not taken from the headline, a line and a handwritten aside; needs `post_id`; if available), with when to recommend it. It is one of four modes, never the default.

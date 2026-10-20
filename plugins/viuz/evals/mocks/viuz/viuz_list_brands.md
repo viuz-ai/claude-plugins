@@ -1,1 +1,0 @@
-{"brands":[{"brand_id":"8fa5b70c-de70-41cd-8996-807cad282061","name":"Viuz"},{"brand_id":"2c1d9e44-6a0b-4f3e-9d57-0b7a1e3c5a10","name":"Studio Teste"},{"brand_id":"c7e4a1b2-93d8-4a6f-8b21-5f0e7d9c3a44","name":"Loja Exemplo"}]}

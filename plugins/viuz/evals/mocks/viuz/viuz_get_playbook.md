@@ -1,1 +1,0 @@
-Viuz playbook v1. Ask before you spend: generations, AI images and Reel scripts use the member's monthly plan. Ask whose art (Viuz designs it, or you make it). Ask before you publish; default is viuz_prepare_schedule. Topics: overview, make-post, make-reel, outside-images, plan-week.

@@ -1,1 +1,0 @@
-{"brief_id":"e1111111-1111-4111-8111-111111111111","format":"carousel","angle":"3 erros de legenda","hook":"Sua legenda esta matando o post?","slides":["Gancho","Erro 1","Erro 2","Erro 3","Chamada para salvar"]}

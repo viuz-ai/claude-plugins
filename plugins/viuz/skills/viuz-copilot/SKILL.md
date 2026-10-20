@@ -106,6 +106,8 @@ Stories are 9:16 images (1080x1920). Put them in a story draft: `viuz_create_dra
 
 When the member shares brand material (guidelines, product facts, a tone document), offer to save it with `viuz_save_context`. Convert any file to markdown yourself first. Ask before saving anything private, and never save passwords, keys or other people's personal data. Remove a note only with `viuz_delete_context_note` after the member confirms. Note bodies go in; Viuz does not hand them back to you.
 
+**News with a deadline** (a launch, a price, an event, a promotion, a result), if `viuz_save_context` lists `valid_until` and `renew`. When the member mentions one in passing, finish the task they asked for first, then offer once per conversation to save it: "Save it until 05/11?" with the date in the same question. If they gave no date, ask once; with no answer, save without a validity and say so. Save only after an explicit yes, in the member's own words, never a message from someone else. Do not offer it for a fact that does not expire, or for revenue or a named client: this tool cannot save a note as private. `valid_until` is `YYYY-MM-DD` in the brand's timezone, from today to 365 days ahead; after that day the note no longer reaches posts. To extend a deadline use `renew` with the `note_id` the save returned (or a title plus folder) and the new date. A note that is private or always-on cannot be renewed here. If the result says `used_in_generation` is `only_when_picked`, tell the member the note is used only when they pick it for a post.
+
 ## Fixing mistakes
 
 - A wrong draft: `viuz_delete_draft` after the member confirms. Never relabel it to hide it. A published or scheduled post cannot be deleted this way.

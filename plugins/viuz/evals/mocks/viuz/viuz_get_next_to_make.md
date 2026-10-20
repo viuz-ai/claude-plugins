@@ -1,1 +1,0 @@
-{"next":{"plan_item_id":"d1111111-1111-4111-8111-111111111111","title":"3 erros de legenda que derrubam o alcance","hook_line":"Sua legenda esta matando o post?","brief":"Carrossel de 5 slides: 3 erros comuns de legenda e como corrigir cada um.","outcome":"reach","format":"carousel"},"suggestions":[]}
