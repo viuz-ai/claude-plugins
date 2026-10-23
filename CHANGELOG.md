@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.3.7 (2026-10-22)
+
+- Reading `viuz_get_insights`: the multiple is per format on the member's own account; quote it as returned, name the tier when present, and for a null multiple give the reason (`accumulating`, `below_floor`, `no_metric`) with no number. Behind `INSIGHTS_DEVIATION_V2_ENABLED`; with the flag off the tool returns no tier or reason and the older wording stands.
+- Reading `viuz_get_reel_script`: `hook_tests` says what the opening tests and `hook_type_source` says who set the hook type (the model at creation, or the member). Never write or guess a hook type the tool did not return.
+
+## 1.3.6 (2026-10-20)
+
+- Renewing a deadline: when more than one saved note with a deadline could be the one the member means, name them and ask which before renewing; with exactly one clear match, renew it and say which.
+
+## 1.3.5 (2026-10-20)
+
+- Saving news with a deadline (Dev agent eval, `evals/mcp/reports/2026-10-20-save-brand-news-dev.md`): the offer to save goes at the end of the SAME message that delivers the task, and a missing date is asked in that same question; a member who extends or changes a deadline already saved gets `renew` by title (or `note_id`), never a second note. `renew` by title no longer needs the folder unless several notes share the title, and a `not_found` by title lists the brand's saved notes with a deadline (`candidates`: id, title, folder, date) so the agent can retry instead of saving a second note.
+
 ## 1.3.4 (2026-10-20)
 
 - Directory links in `plugin.json`: repository, documentation (viuz.ai/mcp), support (support@viuz.ai) and terms. No skill change.

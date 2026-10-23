@@ -13,6 +13,8 @@ O Viuz escreve roteiros de Reel. Ele nunca renderiza vídeo, e você nunca deve 
 
 Leia um depois com `viuz_get_reel_script`; liste com `viuz_list_reel_scripts`.
 
+Um roteiro traz `hook_type`, um rótulo fechado de como o gancho abre, com `hook_tests` (uma frase sobre o que o criador pode observar) e `hook_type_source` (`model` quando o Viuz rotulou o gancho que escreveu, `member_pick` quando o membro escolheu). Leia como vêm; nenhuma ferramenta os define e editar o gancho limpa os três. Nunca diga que um tipo de gancho rende mais.
+
 ## O roteiro do próprio membro
 
 Se o membro escreveu o roteiro, `viuz_save_reel_script` salva do jeito que está. Não gasta roteiro do mês. `viuz_review_reel_script` dá um retorno sobre um roteiro; não escreve nada.
