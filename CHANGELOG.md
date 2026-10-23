@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.8 (2026-10-23)
+
+- Reading `viuz_get_insights` with `by: "formats"`: when `strongest_format.ruler` is `cell`, a format's `multiple` compares formats with each other on the posts that are 7 days or older in an account with at least 9 posts of that format; it is not a post's multiple, a format missing from the list gets no number, and two formats are never divided into a "times better" figure. `by: "posts"` counts the posts left out of the ranking by reason (`without_multiple`). Behind `INSIGHTS_DEVIATION_V2_ENABLED`; with the flag off the field is absent and the older reading stands.
+- Reading `viuz_get_reel_script`: when `hook_type` is null, never name or suggest a hook type (Dev agent eval `evals/mcp/reports/2026-10-23-insights-deviation-real-transport-dev.md`).
+
 ## 1.3.7 (2026-10-22)
 
 - Reading `viuz_get_insights`: the multiple is per format on the member's own account; quote it as returned, name the tier when present, and for a null multiple give the reason (`accumulating`, `below_floor`, `no_metric`) with no number. Behind `INSIGHTS_DEVIATION_V2_ENABLED`; with the flag off the tool returns no tier or reason and the older wording stands.
