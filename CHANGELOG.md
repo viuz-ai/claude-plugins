@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0 (2026-11-11)
+
+- A plain `viuz_generate_post` call for a carousel (no `html_mode`) is made in the new designs while `HTML_DOOR_MCP_DEFAULT_ENABLED` is on (W5-c): typography only, one generation, no AI image, answer at once in GENERATING. `plan_item_id` links the post to the plan item (the answer says `plan_item_linked`), `source_url` is read like the repurpose door, `brief_id` brings the brief's words, `aspect` is `3:4` (default), `4:5` or `1:1`. Refused before anything is spent, with a sentence: `style`, `cta_kind`, `mid_cta`, `template_slug`, `source_closeness` and `aspect` 9:16 (`invalid_input`, reason `scene_only_key`). Photo pins keep a carousel in the previous editor; single images, stories and text posts are unchanged; `networks` only matters to a text post. Post-creation guidance no longer speaks of scene posts. Real-transport eval on Dev: `evals/mcp/reports/2026-11-11-w5c-generate-html-default-dev.md`.
+
 ## 1.4.3 (2026-11-10)
 
 - Change the words of a page of a post made with `html_mode` (W3 M1), behind `MCP_HTML_PAGE_EDIT_ENABLED`: `viuz_get_page` reads the page slots, `viuz_edit_page` writes plain text with `base_revision`; `page_changed` = read again; wait for RENDERED; spends nothing. Real-transport eval on Prod 2026-11-10: edit + revert passed, refusals `page_changed`, `invalid_input` (`markup_in_value`), `not_html_post`, `not_found` all answered right.
