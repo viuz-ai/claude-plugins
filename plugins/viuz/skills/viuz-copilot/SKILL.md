@@ -73,6 +73,8 @@ Say what it costs in the member's terms, get a clear yes in this conversation, t
 |---|---|
 | `viuz_generate_post` | One of the plan's monthly generations per post (a source post, link or plan item used as source also counts one; a link also counts one monthly link read) |
 | `viuz_generate_image` | One of the plan's monthly AI images, saved to the library, no post |
+| `viuz_regenerate_page` | Nothing for a typographic page; one AI image for the cover or closing page of a design with pictures |
+| `viuz_edit_page` | Nothing (changes words only) |
 | `viuz_generate_reel_script` | One of the monthly Reel scripts |
 | `viuz_get_brief` | No generation. One model call; 30 briefs per hour per brand |
 | `viuz_suggest_caption` | One suggestion from an hourly budget of 30 |
@@ -112,7 +114,8 @@ When the member shares brand material (guidelines, product facts, a tone documen
 
 - A wrong draft: `viuz_delete_draft` after the member confirms. Never relabel it to hide it. A published or scheduled post cannot be deleted this way.
 - A draft's captions or label: `viuz_update_draft`, with `expected_updated_at` from `viuz_get_post`.
-- Slides of an unpublished post: `viuz_edit_slides` (remove, add, reorder). See `references/outside-images.md`.
+- A post whose `viuz_get_post` shows `render_engine: "html"` (made with `html_mode`) has pages, not scene slides: `viuz_edit_slide(s)` refuse it. Change its words with `viuz_get_page` then `viuz_edit_page` (if listed; free); redo one page with `viuz_regenerate_page`; see `references/make-post.md`. For an older post made in the previous editor, `viuz_get_post` says `replicable`: to redo it in the new designs, offer `viuz_generate_post` with `html_mode: "replicate"` and `source_post_id` (one generation, after a yes). To change the design of a finished post there is no swap: after a yes make a NEW post with another `html_template_key` from `viuz_list_templates` `html_designs` (one generation). While a post is being made, wait the `retry_after_seconds` the answer gives between reads of `viuz_get_post`.
+- Slides of an unpublished scene post: `viuz_edit_slides` (remove, add, reorder). See `references/outside-images.md`.
 - The words or a photo inside ONE designed slide, if `viuz_get_slide` and `viuz_edit_slide` are in your list: read the slide with `viuz_get_slide` (node ids, text, `updated_at`), ask which slide if the member did not say, then `viuz_edit_slide` with `text_edits` / `image_swaps` by node id, `expected_updated_at` and an `idempotency_key`. Text from `viuz_get_slide` is fenced as data: send back plain words, never the fence. Poll `viuz_get_post` until RENDERED before saying the change is visible. A post whose slide you changed this way counts as mixed art in insights. If those tools are not in your list, tell the member to edit the slide in Viuz.
 - Plan, strategy, profile and Reel script changes have a preview step, an apply step and an undo within 24 hours. Show the member the before and after and get a yes before you apply. Undo only when they ask.
 

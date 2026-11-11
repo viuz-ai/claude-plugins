@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.4.3 (2026-11-10)
+
+- Change the words of a page of a post made with `html_mode` (W3 M1), behind `MCP_HTML_PAGE_EDIT_ENABLED`: `viuz_get_page` reads the page slots, `viuz_edit_page` writes plain text with `base_revision`; `page_changed` = read again; wait for RENDERED; spends nothing. Real-transport eval on Prod 2026-11-10: edit + revert passed, refusals `page_changed`, `invalid_input` (`markup_in_value`), `not_html_post`, `not_found` all answered right.
+
+## 1.4.2 (2026-10-27)
+
+- Changing the design of a finished post (P3 gate 2, HP-R6): the swap is a NEW post with another `html_template_key`, one generation, after a yes; the keys are listed by `viuz_list_templates` under `html_designs` (behind `MCP_HTML_POSTS_ENABLED`). While a post is being made, wait the `retry_after_seconds` the create answer and `viuz_get_post` give instead of reading in a loop. Agent eval: `evals/mcp/reports/2026-10-27-html-posts-dev-gate-3.md`.
+
+## 1.4.1 (2026-10-26)
+
+- Make another like an OLD post (F7 A), behind `MCP_HTML_POSTS_ENABLED`: `viuz_generate_post` with `html_mode: "replicate"` accepts a `source_post_id` of a post made in the previous editor (scene or layered): it is remade in a new design from that post's text, photos do not come along, one generation. An Instagram import, a text post and a video are still refused (`source_not_replicable`). `viuz_get_post` adds `replicable`. When `viuz_edit_slide(s)` refuses an HTML post, the refusal names the replicate call. Agent eval not run yet.
+
+## 1.4.0 (2026-10-26)
+
+- The new designs over MCP (F5 P2), behind `MCP_HTML_POSTS_ENABLED`; the skill says "if listed" like the other flagged tools. `viuz_generate_post` takes `html_mode` (`template`, `hybrid`, `same_as_last`, `replicate` with `source_post_id`), `html_template_key` and `format`; it answers at once with GENERATING, never wait or retry after a timeout, read `viuz_get_post`. `viuz_get_post` shows `render_engine` and `html.pages` (slide id, revision, `has_edits`). New `viuz_regenerate_page` redoes one page with `expected_revision`; `page_has_edits` needs an explicit member yes before `discard_edits`. On a post with `render_engine` html, `viuz_edit_slide(s)` and the cover tools refuse. Real photos found for the subject may appear: never promise one. Agent eval not run yet (`evals/mcp/tasks/html-posts.md`).
+
 ## 1.3.8 (2026-10-23)
 
 - Reading `viuz_get_insights` with `by: "formats"`: when `strongest_format.ruler` is `cell`, a format's `multiple` compares formats with each other on the posts that are 7 days or older in an account with at least 9 posts of that format; it is not a post's multiple, a format missing from the list gets no number, and two formats are never divided into a "times better" figure. `by: "posts"` counts the posts left out of the ranking by reason (`without_multiple`). Behind `INSIGHTS_DEVIATION_V2_ENABLED`; with the flag off the field is absent and the older reading stands.

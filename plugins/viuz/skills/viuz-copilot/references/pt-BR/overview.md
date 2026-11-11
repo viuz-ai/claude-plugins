@@ -68,6 +68,8 @@ Diga o custo nos termos do membro, receba um sim claro nesta conversa e só ent�
 |---|---|
 | `viuz_generate_post` | Uma das gerações mensais do plano por post (um post de origem, link ou item do planejamento usado como fonte conta mais uma; o link conta também uma leitura de link do mês) |
 | `viuz_generate_image` | Uma das imagens de IA mensais do plano, salva na biblioteca, sem post |
+| `viuz_regenerate_page` | Nada numa página só de tipografia; uma imagem de IA na capa ou na página final de um design com imagens |
+| `viuz_edit_page` | Nada (muda só palavras) |
 | `viuz_generate_reel_script` | Um dos roteiros de Reel do mês |
 | `viuz_get_brief` | Nenhuma geração. Uma chamada ao modelo; 30 briefs por hora por marca |
 | `viuz_suggest_caption` | Uma sugestão de um orçamento de 30 por hora |
@@ -107,7 +109,8 @@ Quando o membro compartilha material da marca (guias, fatos do produto, um docum
 
 - Um rascunho errado: `viuz_delete_draft`, depois que o membro confirmar. Nunca renomeie para esconder. Um post publicado ou agendado não pode ser apagado assim.
 - Legendas ou rótulo de um rascunho: `viuz_update_draft`, com `expected_updated_at` de `viuz_get_post`.
-- Slides de um post não publicado: `viuz_edit_slides` (remover, adicionar, reordenar). Veja `references/pt-BR/outside-images.md`.
+- Um post cujo `viuz_get_post` mostra `render_engine: "html"` (feito com `html_mode`) tem páginas, não slides de cena: `viuz_edit_slide(s)` o recusam. Mude as palavras com `viuz_get_page` e depois `viuz_edit_page` (se listados; não gasta nada); refaça uma página com `viuz_regenerate_page`; veja `references/pt-BR/make-post.md`. Para um post mais antigo, feito no editor anterior, `viuz_get_post` diz `replicable`: para refazê-lo nos designs novos, ofereça `viuz_generate_post` com `html_mode: "replicate"` e `source_post_id` (uma geração, depois de um sim). Para trocar o design de um post pronto não há troca: depois de um sim, crie um post NOVO com outro `html_template_key` de `viuz_list_templates` `html_designs` (uma geração). Enquanto um post é feito, espere o `retry_after_seconds` que a resposta dá entre as leituras de `viuz_get_post`.
+- Slides de um post de cena não publicado: `viuz_edit_slides` (remover, adicionar, reordenar). Veja `references/pt-BR/outside-images.md`.
 - As palavras ou uma foto dentro de UM slide desenhado, se `viuz_get_slide` e `viuz_edit_slide` estiverem na sua lista: leia o slide com `viuz_get_slide` (ids dos nós, texto, `updated_at`), pergunte qual slide se o membro não disse, depois `viuz_edit_slide` com `text_edits` / `image_swaps` por id do nó, `expected_updated_at` e um `idempotency_key`. O texto de `viuz_get_slide` vem cercado como dado: devolva só as palavras, nunca a cerca. Consulte `viuz_get_post` até RENDERED antes de dizer que a mudança está visível. Um post cujo slide você mudou assim conta como arte mista nos insights. Se essas ferramentas não estiverem na sua lista, diga ao membro para editar o slide no Viuz.
 - Mudanças de planejamento, estratégia, perfil e roteiro de Reel têm um passo de prévia, um de aplicar e um desfazer em até 24 horas. Mostre ao membro o antes e o depois e receba um sim antes de aplicar. Só desfaça quando ele pedir.
 
