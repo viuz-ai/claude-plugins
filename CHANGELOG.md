@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0 (2026-11-11)
+
+- The previous post editor is gone (F7 W8). Every post Viuz generates is made in the new designs (a carousel in 3:4, 4:5 or 1:1; a single image in 3:4); Viuz no longer generates stories, a story comes from the member's uploaded 9:16 images. `viuz_get_slide`, `viuz_edit_slide`, `viuz_generate_cover`, `viuz_set_cover` and `viuz_save_cover_method` are removed (each answers a refusal naming the replacement until 2026-12-11); `references/covers.md` is deleted. Words on a page: `viuz_get_page` / `viuz_edit_page`; one page again: `viuz_regenerate_page`; page order, removing a page, adding an uploaded image as a page: `viuz_edit_slides`. Posts made before the new designs are read-only (`frozen`, `replicable`): to redo one, `viuz_generate_post` with `html_mode: "replicate"` and `source_post_id`. A picture on a cover is not offered to members, and `source_closeness`, `style`, `cta_kind`, `mid_cta`, `template_slug` and a story are refused before any spend. Agent eval not run.
+
 ## 1.5.0 (2026-11-11)
 
 - A plain `viuz_generate_post` call for a carousel (no `html_mode`) is made in the new designs while `HTML_DOOR_MCP_DEFAULT_ENABLED` is on (W5-c): typography only, one generation, no AI image, answer at once in GENERATING. `plan_item_id` links the post to the plan item (the answer says `plan_item_linked`), `source_url` is read like the repurpose door, `brief_id` brings the brief's words, `aspect` is `3:4` (default), `4:5` or `1:1`. Refused before anything is spent, with a sentence: `style`, `cta_kind`, `mid_cta`, `template_slug`, `source_closeness` and `aspect` 9:16 (`invalid_input`, reason `scene_only_key`). Photo pins keep a carousel in the previous editor; single images, stories and text posts are unchanged; `networks` only matters to a text post. Post-creation guidance no longer speaks of scene posts. Real-transport eval on Dev: `evals/mcp/reports/2026-11-11-w5c-generate-html-default-dev.md`.

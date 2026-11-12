@@ -1,6 +1,6 @@
 # Viuz for Claude
 
-Viuz is a social content system for creators and brands: it plans the week, designs carousels, single images and stories in the brand's own look, writes Reel scripts, and schedules posts to Instagram, TikTok, Threads, X and LinkedIn. This plugin connects Claude to your Viuz workspace and teaches Claude how to work with it: ask whose art it is before spending anything, use your photo library first, mix in images made elsewhere, and never publish without your say.
+Viuz is a social content system for creators and brands: it plans the week, designs carousels and single images in the brand's own look (stories come from your uploads), writes Reel scripts, and schedules posts to Instagram, TikTok, Threads, X and LinkedIn. This plugin connects Claude to your Viuz workspace and teaches Claude how to work with it: ask whose art it is before spending anything, use your photo library first, mix in images made elsewhere, and never publish without your say.
 
 ## Install
 

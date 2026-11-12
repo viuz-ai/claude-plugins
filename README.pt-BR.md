@@ -1,6 +1,6 @@
 # Viuz para o Claude
 
-O Viuz é um sistema de conteúdo para criadores e marcas: planeja a semana, desenha carrosséis, imagens únicas e stories no visual da própria marca, escreve roteiros de Reel e agenda posts no Instagram, TikTok, Threads, X e LinkedIn. Este plugin liga o Claude ao seu Viuz e ensina o Claude a trabalhar com ele: perguntar de quem é a arte antes de gastar qualquer coisa, usar primeiro a sua biblioteca de fotos, misturar imagens feitas em outro lugar e nunca publicar sem você mandar.
+O Viuz é um sistema de conteúdo para criadores e marcas: planeja a semana, desenha carrosséis e imagens únicas no visual da própria marca (stories vêm dos seus envios), escreve roteiros de Reel e agenda posts no Instagram, TikTok, Threads, X e LinkedIn. Este plugin liga o Claude ao seu Viuz e ensina o Claude a trabalhar com ele: perguntar de quem é a arte antes de gastar qualquer coisa, usar primeiro a sua biblioteca de fotos, misturar imagens feitas em outro lugar e nunca publicar sem você mandar.
 
 ## Instalação
 

@@ -23,9 +23,9 @@ Pule o envio. `viuz_search_library` acha as fotos, e então passe `library_asset
 4. `viuz_edit_slides` com a lista COMPLETA de slides depois da edição, em ordem: `{slide_id}` mantém um slide, `{asset_id}` adiciona um slide novo com o arquivo enviado, e qualquer slide existente que você deixar de fora é removido. Para trocar um slide, ponha o novo `asset_id` onde o slide estava e mantenha os outros ids como estão. Passe `expected_updated_at`; se o membro mudou o post nesse meio tempo, a chamada é recusada com `conflict`: leia o post de novo e refaça a edição.
 5. Nunca comece um rascunho novo para mudar um slide.
 
-Seja honesto sobre o que a troca faz: a imagem nova substitui o slide inteiro, com o texto e o layout desenhados. Os slides desenhados pelo Viuz renderizam de novo por um instante (status RENDERING) depois de uma edição. Mudar só as palavras ou uma foto dentro de um slide desenhado se faz com `viuz_get_slide` e depois `viuz_edit_slide`, se as duas estiverem na sua lista (veja SKILL.md, Corrigir erros); se não estiverem, você não consegue fazer isso por esta conexão, então diga ao membro para abrir o post no Viuz, ou, depois de perguntar, gere de novo com um pedido melhor.
+Seja honesto sobre o que a troca faz: a imagem nova substitui a página inteira, com o texto e o layout desenhados. As páginas desenhadas pelo Viuz renderizam de novo por um instante (status RENDERING) depois de uma edição. Mudar só as palavras de uma página desenhada é `viuz_get_page` e depois `viuz_edit_page` (veja `references/pt-BR/make-post.md`); uma foto dentro de uma página desenhada se muda no Viuz, então diga ao membro para abrir o post lá, ou, depois de perguntar, gere de novo com um pedido melhor.
 
-`viuz_edit_slides` funciona em um post que não foi publicado, inclusive um agendado para mais de 30 minutos à frente. É recusado (`not_editable`) quando o post está publicando, publicado, ainda renderizando, agendado para daqui a menos de 30 minutos ou agendado só para parte dos slides.
+`viuz_edit_slides` funciona em um post de envio ou feito nos designs novos (nunca em um post antigo congelado) que não foi publicado, inclusive um agendado para mais de 30 minutos à frente. É recusado (`not_editable`) quando o post está publicando, publicado, ainda renderizando, agendado para daqui a menos de 30 minutos ou agendado só para parte dos slides.
 
 ## Regras
 

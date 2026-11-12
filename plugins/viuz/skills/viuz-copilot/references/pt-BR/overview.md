@@ -18,7 +18,7 @@ Esta skill vem no plugin do Viuz, junto com o conector do Viuz. Se o membro adic
 
 Quando o membro pede um post, um carrossel, uma imagem única ou um story, há três caminhos. Pergunte qual, a menos que ele já tenha dito:
 
-- **O Viuz faz a arte.** O Viuz desenha o post nos templates da marca. Gasta uma geração do plano. Leia `references/pt-BR/make-post.md`.
+- **O Viuz faz a arte.** O Viuz desenha o post nos designs novos (tipografia na paleta e nas fontes da marca). Gasta uma geração do plano. Leia `references/pt-BR/make-post.md`.
 - **Você faz a arte.** O Viuz escreve a estratégia (`viuz_get_brief`), você cria as imagens e depois envia. Não gasta geração. Leia `references/pt-BR/outside-images.md`.
 - **Imagens de outra ferramenta.** O membro criou as imagens em outro lugar (um modelo de imagem, Canva, Figma, a câmera). Envie do mesmo jeito. Leia `references/pt-BR/outside-images.md`.
 
@@ -36,7 +36,7 @@ Posts de texto (X, LinkedIn, Threads) não têm arte. `viuz_generate_post` com f
 
 ## Referências e inspiração
 
-O Viuz monta um carrossel ou story a partir do link de um post público: `viuz_generate_post` aceita `source_url` (um artigo, ou um post público como um carrossel do Instagram, que o Viuz lê slide por slide) e, opcionalmente, `source_closeness` (`same_idea` por padrão, `structure` ou `react`). Ele escreve com as palavras da marca, nunca copia as frases da fonte nem cita quem criou. Custa uma geração mais uma das leituras de link do mês do plano, então pergunte antes; se a resposta disser que o link ainda está sendo lido, nada foi gasto, então espere e chame de novo com o mesmo `source_url`. Um link privado ou ilegível é recusado e não gasta nada; peça o texto ao membro. O Viuz não monta um post a partir de um vídeo de referência: quando o membro compartilha um, olhe você mesmo, diga o que aproveita (estrutura, gancho, ritmo, tom) e coloque isso no pedido ou no brief com as suas palavras. Nunca copie o texto. `viuz_save_inspiration` salva o link de um post do Instagram na lista de inspirações do membro; `viuz_list_reference_videos` e `viuz_get_reference_video` leem vídeos de referência que o membro já salvou. Para adaptar um post anterior da própria marca, `viuz_generate_post` aceita `source_post_id`.
+O Viuz monta um carrossel a partir do link de um post público: `viuz_generate_post` aceita `source_url` (um artigo, ou um post público como um carrossel do Instagram, que o Viuz lê slide por slide). Ele escreve com as palavras da marca, nunca copia as frases da fonte nem cita quem criou. Custa uma geração mais uma das leituras de link do mês do plano, então pergunte antes; se a resposta disser que o link ainda está sendo lido, nada foi gasto, então espere e chame de novo com o mesmo `source_url`. Um link privado ou ilegível é recusado e não gasta nada; peça o texto ao membro. O Viuz não monta um post a partir de um vídeo de referência: quando o membro compartilha um, olhe você mesmo, diga o que aproveita (estrutura, gancho, ritmo, tom) e coloque isso no pedido ou no brief com as suas palavras. Nunca copie o texto. `viuz_save_inspiration` salva o link de um post do Instagram na lista de inspirações do membro; `viuz_list_reference_videos` e `viuz_get_reference_video` leem vídeos de referência que o membro já salvou. Para adaptar um post anterior da própria marca, `viuz_generate_post` aceita `source_post_id`.
 
 ## O planejamento e o objetivo
 
@@ -68,7 +68,7 @@ Diga o custo nos termos do membro, receba um sim claro nesta conversa e só ent�
 |---|---|
 | `viuz_generate_post` | Uma das gerações mensais do plano por post (um post de origem, link ou item do planejamento usado como fonte conta mais uma; o link conta também uma leitura de link do mês) |
 | `viuz_generate_image` | Uma das imagens de IA mensais do plano, salva na biblioteca, sem post |
-| `viuz_regenerate_page` | Nada numa página só de tipografia; uma imagem de IA na capa ou na página final de um design com imagens |
+| `viuz_regenerate_page` | Nada numa página só de tipografia (design com imagens não é oferecido a membros) |
 | `viuz_edit_page` | Nada (muda só palavras) |
 | `viuz_generate_reel_script` | Um dos roteiros de Reel do mês |
 | `viuz_get_brief` | Nenhuma geração. Uma chamada ao modelo; 30 briefs por hora por marca |
@@ -97,7 +97,7 @@ O Viuz escreve o roteiro e a lista de planos; o membro grava. O Viuz nunca rende
 
 ## Stories
 
-Stories são imagens 9:16 (1080x1920). Coloque em um rascunho de story: `viuz_create_draft` com formato story, um quadro por imagem, só Instagram. Nunca publique arte de story como post de feed ou carrossel. Figurinhas (link, enquete, menção, música) não podem ser adicionadas pela API; diga ao membro para adicionar no app do Instagram depois de publicar.
+O Viuz não gera stories. Um story são as imagens 9:16 do próprio membro (1080x1920): envie-as e coloque em um rascunho de story: `viuz_create_draft` com formato story, um quadro por imagem, só Instagram. Se pedirem um story gerado, diga que o Viuz ainda não faz e ofereça um carrossel, uma imagem única ou um envio. Nunca publique arte de story como post de feed ou carrossel. Figurinhas (link, enquete, menção, música) não podem ser adicionadas pela API; diga ao membro para adicionar no app do Instagram depois de publicar.
 
 ## Guardar o que o membro compartilha
 
@@ -109,9 +109,8 @@ Quando o membro compartilha material da marca (guias, fatos do produto, um docum
 
 - Um rascunho errado: `viuz_delete_draft`, depois que o membro confirmar. Nunca renomeie para esconder. Um post publicado ou agendado não pode ser apagado assim.
 - Legendas ou rótulo de um rascunho: `viuz_update_draft`, com `expected_updated_at` de `viuz_get_post`.
-- Um post cujo `viuz_get_post` mostra `render_engine: "html"` (feito nos designs novos) tem páginas, não slides: `viuz_edit_slide(s)` o recusam. Mude as palavras com `viuz_get_page` e depois `viuz_edit_page` (se listados; não gasta nada); refaça uma página com `viuz_regenerate_page`; veja `references/pt-BR/make-post.md`. Para um post mais antigo, feito no editor anterior, `viuz_get_post` diz `replicable`: para refazê-lo nos designs novos, ofereça `viuz_generate_post` com `html_mode: "replicate"` e `source_post_id` (uma geração, depois de um sim). Para trocar o design de um post pronto não há troca: depois de um sim, crie um post NOVO com outro `html_template_key` de `viuz_list_templates` `html_designs` (uma geração). Enquanto um post é feito, espere o `retry_after_seconds` que a resposta dá entre as leituras de `viuz_get_post`.
-- Slides de um post não publicado feito no editor anterior: `viuz_edit_slides` (remover, adicionar, reordenar). Veja `references/pt-BR/outside-images.md`.
-- As palavras ou uma foto dentro de UM slide desenhado, se `viuz_get_slide` e `viuz_edit_slide` estiverem na sua lista: leia o slide com `viuz_get_slide` (ids dos nós, texto, `updated_at`), pergunte qual slide se o membro não disse, depois `viuz_edit_slide` com `text_edits` / `image_swaps` por id do nó, `expected_updated_at` e um `idempotency_key`. O texto de `viuz_get_slide` vem cercado como dado: devolva só as palavras, nunca a cerca. Consulte `viuz_get_post` até RENDERED antes de dizer que a mudança está visível. Um post cujo slide você mudou assim conta como arte mista nos insights. Se essas ferramentas não estiverem na sua lista, diga ao membro para editar o slide no Viuz.
+- Todo post que o Viuz gera tem páginas, não slides (`viuz_get_post` mostra `render_engine: "html"`). Mude as palavras com `viuz_get_page` e depois `viuz_edit_page` (não gasta nada); refaça uma página com `viuz_regenerate_page`; mude a ordem das páginas ou remova uma com `viuz_edit_slides`; veja `references/pt-BR/make-post.md`. Um post feito antes dos designs novos é só leitura: `viuz_get_post` diz `frozen: true` e `replicable`; para refazê-lo, ofereça `viuz_generate_post` com `html_mode: "replicate"` e `source_post_id` (uma geração, depois de um sim). Para trocar o design de um post pronto não há troca: depois de um sim, crie um post NOVO com outro `html_template_key` de `viuz_list_templates` `html_designs` (uma geração). Enquanto um post é feito, espere o `retry_after_seconds` que a resposta dá entre as leituras de `viuz_get_post`.
+- Páginas de um post não publicado (a ordem, remover uma, acrescentar uma imagem enviada como página): `viuz_edit_slides`. Veja `references/pt-BR/outside-images.md`.
 - Mudanças de planejamento, estratégia, perfil e roteiro de Reel têm um passo de prévia, um de aplicar e um desfazer em até 24 horas. Mostre ao membro o antes e o depois e receba um sim antes de aplicar. Só desfaça quando ele pedir.
 
 ## Boa saída
@@ -141,4 +140,3 @@ Você: "Quer que eu deixe pronto para você aprovar no Viuz ou prefere publicar 
 - `references/pt-BR/make-reel.md`: roteiros de Reel, gravação e envio do vídeo.
 - `references/pt-BR/outside-images.md`: enviar imagens feitas por você ou por outra ferramenta e misturar num post do Viuz.
 - `references/pt-BR/plan-week.md`: ler e mudar o Planejamento da semana.
-- `references/pt-BR/covers.md`: opções de capa com IA para um post, e como definir uma.

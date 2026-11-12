@@ -23,9 +23,9 @@ Skip the upload. `viuz_search_library` finds them, then pass `library_asset_ids`
 4. `viuz_edit_slides` with the COMPLETE slide list after the edit, in order: `{slide_id}` keeps a slide, `{asset_id}` adds a new slide from the uploaded file, and any existing slide you leave out is removed. To replace one slide, put the new `asset_id` where that slide was and keep every other id unchanged. Pass `expected_updated_at`; if the member changed the post meanwhile the call is refused with `conflict`: read the post again and redo the edit.
 5. Never start a new draft to change one slide.
 
-Be honest about what a swap does: the new image replaces the whole slide, including its designed text and layout. Viuz's own designed slides re-render for a moment (status RENDERING) after an edit. Changing only the words or one photo inside a designed slide is done with `viuz_get_slide` then `viuz_edit_slide`, if both are in your list (see SKILL.md, Fixing mistakes); if they are not, you cannot do it through this connection, so tell the member to open the post in Viuz, or generate again with a better request after asking them.
+Be honest about what a swap does: the new image replaces the whole page, including its designed text and layout. Viuz's own designed pages re-render for a moment (status RENDERING) after an edit. Changing only the words of a designed page is `viuz_get_page` then `viuz_edit_page` (see `references/make-post.md`); a photo inside a designed page is changed in Viuz, so tell the member to open the post there, or generate again with a better request after asking them.
 
-`viuz_edit_slides` works on a post that has not published, including a scheduled one more than 30 minutes ahead. It is refused (`not_editable`) when the post is publishing, published, still rendering, scheduled within 30 minutes, or scheduled for only some of its slides.
+`viuz_edit_slides` works on an upload post or a post made in the new designs (never on an older frozen post) that has not published, including a scheduled one more than 30 minutes ahead. It is refused (`not_editable`) when the post is publishing, published, still rendering, scheduled within 30 minutes, or scheduled for only some of its slides.
 
 ## Rules
 
@@ -36,4 +36,4 @@ Be honest about what a swap does: the new image replaces the whole slide, includ
 ## A good turn
 
 Member: "Replace the cover with this picture and keep the rest."
-You: read the post, upload the picture into it, send the full slide list with the new asset in slide 1's place, then say: "Done. The old cover and its text are gone; the other slides are untouched. It is re-rendering for a moment."
+You: read the post, upload the picture into it, send the full slide list with the new asset in page 1's place, then say: "Done. The old cover and its text are gone; the other slides are untouched. It is re-rendering for a moment."

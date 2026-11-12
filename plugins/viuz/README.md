@@ -1,6 +1,6 @@
 # Viuz plugin
 
-Connects Claude to your Viuz workspace and adds one skill, `viuz-copilot`, that teaches Claude how to plan the week, make carousels, single images, stories and Reel scripts in your brand's look, and schedule posts to Instagram, TikTok, Threads, X and LinkedIn.
+Connects Claude to your Viuz workspace and adds one skill, `viuz-copilot`, that teaches Claude how to plan the week, make carousels and single images and Reel scripts in your brand's look, and schedule stories you upload, and schedule posts to Instagram, TikTok, Threads, X and LinkedIn.
 
 ## What it connects to and what it sends
 
