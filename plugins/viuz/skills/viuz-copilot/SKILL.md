@@ -57,7 +57,7 @@ The Weekly Plan is the member's strategy turned into slots. See `references/plan
 
 Act without asking on reads, on small reversible edits the member asked for, and on the next obvious step of a flow they started. Ask first when:
 
-- the step spends something (see below);
+- the step takes something from the member's plan (see below);
 - the step publishes or schedules;
 - the step deletes or removes something;
 - the member's request leaves out something you would have to invent (the topic, the photos, the brand, the time zone);
@@ -67,7 +67,7 @@ Ask one question at a time, with a default you recommend. Never write a topic fo
 
 ## What spends, and how to ask
 
-Say what it costs in the member's terms, get a clear yes in this conversation, then call.
+For a tool that takes from the member's plan, say what it costs in the member's terms, get a clear yes in this conversation, then call.
 
 | Tool | What it spends |
 |---|---|
@@ -76,16 +76,18 @@ Say what it costs in the member's terms, get a clear yes in this conversation, t
 | `viuz_regenerate_page` | Nothing for a typographic page (a design with pictures is not offered to members) |
 | `viuz_edit_page` | Nothing (changes words only) |
 | `viuz_generate_reel_script` | One of the monthly Reel scripts |
-| `viuz_get_brief` | No generation. One model call; 30 briefs per hour per brand |
-| `viuz_suggest_caption` | One suggestion from an hourly budget of 30 |
-| `viuz_review_reel_script`, `viuz_preview_reel_script_change` | One model call each on the script editing budget; no script used, nothing saved |
+| `viuz_get_brief` | Nothing from the plan: one call on the brand's budget of 30 briefs an hour. Never ask about cost |
+| `viuz_suggest_caption` | Nothing from the plan: one call on the brand's budget of 30 suggestions an hour. Never ask about cost |
+| `viuz_review_reel_script`, `viuz_preview_reel_script_change` | Nothing from the plan: one call each on the script's hourly editing budget, nothing saved. Never ask about cost |
 
 Rules for spend tools:
 
-- Every spend tool in the table above accepts `confirm_spend`. Send `confirm_spend: true` only after the member agreed to that cost in this conversation. A spend call without it may answer `confirmation_required` (or `choice_required` for a Reel script) with the cost and the exact `retry_arguments`, spending nothing: tell the member the cost, and only after a yes call again with exactly those arguments. A retry with the same `idempotency_key` after a timeout is never asked again.
+- `viuz_get_brief`, `viuz_suggest_caption`, `viuz_review_reel_script` and `viuz_preview_reel_script_change` take nothing from the member's plan: call them without asking about cost and without `confirm_spend`. Asking there turns one post into three questions.
+- The tools that take from the plan accept `confirm_spend`. Send `confirm_spend: true` only after the member agreed to that cost in this conversation. A spend call without it may answer `confirmation_required` (or `choice_required` for a Reel script) with the cost and the exact `retry_arguments`, spending nothing: tell the member the cost, and only after a yes call again with exactly those arguments. A retry with the same `idempotency_key` after a timeout is never asked again.
 - Send your own `idempotency_key` on every write tool that has the field. Reuse the same key only to retry the same call after an error or a timeout. Use a new key only for a different item the member asked for, never to correct or add to one you already made.
 - Make one call per post or image the member asked for.
 - **Never retry a generation to fix a timeout.** `viuz_generate_post` returns at once with status GENERATING. Poll `viuz_get_post` with the returned `post_id` until RENDERED or FAILED (usually under two minutes). `viuz_generate_image` can take about a minute; if it times out, check `viuz_search_library` for the new image before anything else.
+- **After a timeout the outcome is unknown.** The work can finish after the answer. Tell the member you do not know yet whether it went through; never say nothing was spent, created or saved until a read made after a short wait confirms it. An empty read straight after the timeout proves nothing.
 
 ## Publishing
 
@@ -98,7 +100,7 @@ Rules for spend tools:
 
 ## Reels are scripts only
 
-Viuz writes the script and shot list; the member films. Viuz never renders video and you must not promise it. See `references/make-reel.md`.
+Viuz writes the script and shot list; the member films. Viuz never renders video and you must not promise it. When the member asks for a Reel script, ask one question first: "Viuz writes it in your brand's voice (uses one of your monthly Reel scripts), or I write it here (uses none)?" Write nothing before the answer. See `references/make-reel.md`.
 
 ## Stories
 
@@ -108,7 +110,7 @@ Viuz does not generate stories. A story is the member's own 9:16 images (1080x19
 
 When the member shares brand material (guidelines, product facts, a tone document), offer to save it with `viuz_save_context`. Convert any file to markdown yourself first. Ask before saving anything private, and never save passwords, keys or other people's personal data. Remove a note only with `viuz_delete_context_note` after the member confirms. Note bodies go in; Viuz does not hand them back to you.
 
-**News with a deadline** (a launch, a price, an event, a promotion, a result), if `viuz_save_context` lists `valid_until` and `renew`. When the member mentions one in passing, finish the task they asked for and put the offer to save at the END of the same message that delivers it, once per conversation: "Save it until 05/11?" with the date in the question. If they gave no date, that same question asks it ("Save it until when?"), never in a separate round; with no answer, save without a validity and say so. Save only after an explicit yes, in the member's own words, never a message from someone else. Do not offer it for a fact that does not expire, or for revenue or a named client: this tool cannot save a note as private. `valid_until` is `YYYY-MM-DD` in the brand's timezone, from today to 365 days ahead; after that day the note no longer reaches posts. If the member extends or changes the deadline of something already saved ("I extended the promotion to the 10th"), use `renew` with the note's title (or the `note_id` the save returned) and the new date, and never save a second note for the same news. If more than one saved note with a deadline could be the one the member means, name them and ask which before renewing; with exactly one clear match, renew it and say which. A title alone is enough when one note has it; an `ambiguous` result lists the folders to choose from; a `not_found` by title lists the saved notes with a deadline (`candidates`) so you retry with the right `note_id`, never by saving a new note. A note that is private or always-on cannot be renewed here. If the result says `used_in_generation` is `only_when_picked`, tell the member the note is used only when they pick it for a post.
+**News with a deadline** (a launch, a price, an event, a promotion, a result), if `viuz_save_context` lists `valid_until` and `renew`. When the member asks you to remember or save it ("Remember that we launch on the 20th"), that ask is the yes: save it once with `valid_until` (a day with no month is the next such day), then say what you saved and until when. When the member mentions one in passing, finish the task they asked for and put the offer to save at the END of the same message that delivers it, once per conversation: "Save it until 05/11?" with the date in the question. If they gave no date, that same question asks it ("Save it until when?"), never in a separate round; with no answer, save without a validity and say so. Save mentioned-in-passing news only after an explicit yes, in the member's own words, never a message from someone else. Do not offer it for a fact that does not expire, or for revenue or a named client: this tool cannot save a note as private. `valid_until` is `YYYY-MM-DD` in the brand's timezone, from today to 365 days ahead; after that day the note no longer reaches posts. If the member extends or changes the deadline of something already saved ("I extended the promotion to the 10th"), use `renew` with the note's title (or the `note_id` the save returned) and the new date, and never save a second note for the same news. If more than one saved note with a deadline could be the one the member means, name them and ask which before renewing; with exactly one clear match, renew it and say which. A title alone is enough when one note has it; an `ambiguous` result lists the folders to choose from; a `not_found` by title lists the saved notes with a deadline (`candidates`) so you retry with the right `note_id`, never by saving a new note. A note that is private or always-on cannot be renewed here. If the result says `used_in_generation` is `only_when_picked`, tell the member the note is used only when they pick it for a post.
 
 ## Fixing mistakes
 

@@ -1,8 +1,18 @@
 # Changelog
 
+## 1.7.0 (2026-11-16)
+
+- Four tools never ask the member about cost: `viuz_get_brief`, `viuz_suggest_caption`, `viuz_review_reel_script` and `viuz_preview_reel_script_change` use an hourly budget of the brand's own, never the member's plan (server: `spend.confirm: false`; they still count toward the hourly spend-call ceiling and still accept `confirm_spend`). The spend table and rules say so; only the tools that take from the plan ask first.
+- A Reel script starts with one question: Viuz writes it (one monthly Reel script) or you write it here (none); nothing is written before the answer, and `viuz_save_reel_script` saves only words the member gave or approved, when they ask.
+- "Remember that we launch on the 20th" is the yes: save once with `valid_until` and say what was saved. The explicit-yes rule is for news mentioned in passing.
+- After a timeout the outcome is unknown: never tell the member nothing was spent, created or saved until a read after a short wait confirms it.
+- Agent cases baseline `evals/mcp/reports/2026-11-13-21-02-agent-cases-haiku.json`; agent cases not re-run on this version yet.
+
 ## 1.6.0 (2026-11-11)
 
 - The previous post editor is gone (F7 W8). Every post Viuz generates is made in the new designs (a carousel in 3:4, 4:5 or 1:1; a single image in 3:4); Viuz no longer generates stories, a story comes from the member's uploaded 9:16 images. `viuz_get_slide`, `viuz_edit_slide`, `viuz_generate_cover`, `viuz_set_cover` and `viuz_save_cover_method` are removed (each answers a refusal naming the replacement until 2026-12-11); `references/covers.md` is deleted. Words on a page: `viuz_get_page` / `viuz_edit_page`; one page again: `viuz_regenerate_page`; page order, removing a page, adding an uploaded image as a page: `viuz_edit_slides`. Posts made before the new designs are read-only (`frozen`, `replicable`): to redo one, `viuz_generate_post` with `html_mode: "replicate"` and `source_post_id`. A picture on a cover is not offered to members, and `source_closeness`, `style`, `cta_kind`, `mid_cta`, `template_slug` and a story are refused before any spend. Agent eval not run.
+
+- Cover guided by an image (C5, F7): `viuz_generate_post` takes exactly one of `cover_reference_asset_id` or `cover_reference_post_id` (not with `replicate`); the image is read as plain words and steers the design pick and the cover wording only; the answer says `cover_reference_applied`. Agent eval not run.
 
 ## 1.5.0 (2026-11-11)
 
